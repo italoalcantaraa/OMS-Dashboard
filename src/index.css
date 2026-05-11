@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "inter-light";
+}
+
+:root {
+  --section-color: #0f172b;
+  --principal-color: #020618;
+
+  --boder-color: #314158;
+
+  --default-yellow: #fdc700;
+  --default-green: #05df72;
+  --default-red: #ff6467;
+  --default-blue: #51a2ff;
+
+  --default-border-radius: 10px;
+  --border: 1px solid #1d293d
+}
+
+@font-face {
+  font-family: "inter-medium";
+  src: url("./assets/fonts/inter/Inter-Medium.otf");
+}
+
+@font-face {
+  font-family: "inter-light";
+  src: url("./assets/fonts/inter/Inter-Light.otf");
+}
+
+@font-face {
+  font-family: "inter-bold";
+  src: url("./assets/fonts/inter/Inter-Bold.otf");
+}
