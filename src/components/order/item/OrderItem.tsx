@@ -1,11 +1,7 @@
-import './OrderItem.css'
+import "./OrderItem.css";
 
 function OrderItem() {
-    return (
-        <div>
-            OrderItem
-        </div>
-    )
+  return <div>OrderItem</div>;
 }
 
 export default OrderItem;

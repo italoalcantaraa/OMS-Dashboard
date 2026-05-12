@@ -2,36 +2,41 @@ import "./Dashboard.css";
 
 import type { DashboardItemProps } from "../../types/Dashboard.ts";
 import ItemDashboard from "./item/DashboardItem.tsx";
+import type { DashboardValues } from "../../types/DashboardValues.ts";
 
-function Dashboard() {
+type DashboardProps = {
+  values: DashboardValues;
+};
+
+function Dashboard({ values }: DashboardProps) {
   const items: DashboardItemProps[] = [
     {
       id: 1,
       image: "/shopping-cart.svg",
       color: "var(--default-yellow)",
       description: "Pending Orders",
-      value: 12,
+      value: values.countPending,
     },
     {
       id: 2,
       image: "/package.svg",
       color: "var(--default-green)",
       description: "Delivered Orders",
-      value: 27,
+      value: values.countDelivered,
     },
     {
       id: 3,
       image: "/circle-x.svg",
       color: "var(--default-red)",
       description: "Canceled Orders",
-      value: 4,
+      value: values.countCanceled,
     },
     {
       id: 4,
       image: "/dollar-sign.svg",
       color: "var(--default-blue)",
-      description: "Pending Orders",
-      value: 24550,
+      description: "Revenue Orders",
+      value: values.renevue,
     },
   ];
 

@@ -1,15 +1,37 @@
 import "./Home.css";
 import Header from "../components/header/Header";
 import Dashboard from "../components/dashboard/Dashboard";
-import Order from "../components/order/Order";
+import Order from "../components/order/Order.tsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import type { DashboardValues } from "../types/DashboardValues.ts";
+import { calc } from "../utils/DashboardCalc.ts";
 
 function Home() {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [dashBoardValues, setDashboarValues] = useState<DashboardValues>(
+    calc(orders),
+  );
+
+  const URL = "https://6a00f10636fb6ad04de096ef.mockapi.io/api/v1/orders";
+
+  const getAllOrders = async () => {
+    const request = await axios.get(URL);
+    const data = request.data;
+    setOrders(data);
+  };
+
+  useEffect(() => {
+    getAllOrders();
+    setDashboarValues(calc(orders));
+  }, [orders]);
+
   return (
     <main>
       <Header />
       <div className="content">
-        <Dashboard />
-        <Order />
+        <Dashboard values={dashBoardValues} />
+        <Order orders={orders} />
       </div>
     </main>
   );

@@ -1,43 +1,47 @@
-import './Order.css'
-import axios from "axios";
+import "./Order.css";
 import { useEffect, useState } from "react";
+import { FilterType } from "../../types/FilterType";
+import type { Order } from "../../types/Order";
+import { ConcreteStrategyFilter } from "../../strategies/ConcreteStrategyFilter";
+import { equalsIgnoreCase } from "../../utils/Utils";
 
-type Order = {
-  id: string;
-  customer: string;
-  status: string;
-  total: number;
-  createdAt: string;
+type OrderProps = {
+  orders: Order[];
 };
 
-type FilterType = {
-  isActive: boolean;
-  filter: "All" | "Pending" | "Delivered" | "Canceled";
-};
+function Order({ orders }: OrderProps) {
+  const [filterType, setFilterType] = useState<FilterType>(FilterType.ALL);
+  const [ordersCopy, setOrdersCopy] = useState<Order[]>([]);
+  const [customer, setCustomer] = useState<string>("");
 
-function Order() {
-  const [filterType, setFilterType] = useState<FilterType[]>([
-    { filter: "All", isActive: true },
-    { filter: "Pending", isActive: false },
-    { filter: "Delivered", isActive: false },
-    { filter: "Canceled", isActive: false },
-  ]);
+  const apllyFilter = (): void => {
+    let newList: Order[] = [];
 
-  const [orders, setOrders] = useState<Order[]>([]);
+    // prioridade de filtro por nome
+    const ordersFilteredByName: Order[] = orders.filter((e) =>
+      e.customer.includes(customer),
+    );
 
-  const URL = "https://6a00f10636fb6ad04de096ef.mockapi.io/api/v1/orders";
+    // se nao for ALL
+    if (!equalsIgnoreCase(filterType, FilterType.ALL)) {
+      // aplica a estretegia por filtro
+      const filterStrategy = new ConcreteStrategyFilter();
+      newList = filterStrategy.filterByType(ordersFilteredByName, filterType);
+      setOrdersCopy(newList);
+      return;
+    }
 
-  const getAllOrders = async () => {
-    const request = await axios.get(URL);
-    const data = request.data;
+    // so filtra por nome (ALL)
+    setOrdersCopy(ordersFilteredByName);
+  };
 
-    setOrders(data);
+  const handleCustomer = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomer(e.target.value);
   };
 
   useEffect(() => {
-    getAllOrders();
-  }, []);
-
+    apllyFilter();
+  }, [filterType, customer, orders]);
   return (
     <>
       <div className="container-order">
@@ -45,11 +49,21 @@ function Order() {
         <div className="filter">
           <div className="search">
             <img src="" alt="" />
-            <input type="text" placeholder="Search customer..." />
+            <input
+              type="text"
+              value={customer}
+              onChange={handleCustomer}
+              placeholder="Search customer..."
+            />
           </div>
           <div className="filters">
-            {filterType.map((e) => (
-              <button>{e.filter}</button>
+            {Object.keys(FilterType).map((e) => (
+              <button
+                key={e.valueOf()}
+                onClick={() => setFilterType(e as FilterType)}
+              >
+                {e.valueOf()}
+              </button>
             ))}
           </div>
         </div>
@@ -65,7 +79,7 @@ function Order() {
           </thead>
 
           <tbody>
-            {orders.map((order) => (
+            {ordersCopy.map((order) => (
               <tr key={order.id}>
                 <th scope="row">{order.id}</th>
                 <td>{order.customer}</td>
