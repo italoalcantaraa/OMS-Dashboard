@@ -19,8 +19,8 @@ function Order({ orders }: OrderProps) {
 
     // prioridade de filtro por nome
     const ordersFilteredByName: Order[] = orders.filter((e) =>
-      e.customer.includes(customer),
-    );
+      e.customer.toLowerCase().includes(customer.toLowerCase()),
+    );  
 
     // se nao for ALL
     if (!equalsIgnoreCase(filterType, FilterType.ALL)) {
@@ -43,15 +43,10 @@ function Order({ orders }: OrderProps) {
     apllyFilter();
   }, [filterType, customer, orders]);
 
-  useEffect(() => {
-    let button = document.querySelector("button");
-    button!.id = "ALL-active";
-  }, []);
-
   return (
     <>
       <div className="container-order">
-        <h1>Orders</h1>
+        <h1 id="title">Orders</h1>
         <div className="filter">
           <div className="search">
             <img src="" alt="" />

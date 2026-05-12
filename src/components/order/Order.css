@@ -7,23 +7,39 @@
   background-color: var(--section-color);
   border-radius: 12px;
   border: var(--border);
+  gap: 15px;
 
+  #title {
+    font-size: 22px;
+    font-weight: bold;
+  }
   .filter {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
 
+    button, input {
+        background-color: #1d293d;
+        border: none;
+        padding: 10px 15px;
+        color: oklch(86.9% 0.022 252.894);
+        transition: 0.3;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
     .filters {
       display: flex;
       gap: 10px;
 
-      button {
-        background-color: white;
-      }
+      
 
       button.active {
-        background-color: red;
+        background-color: #1947ce;
+        color: white;
+        font-weight: bold;
       }
     }
   }
