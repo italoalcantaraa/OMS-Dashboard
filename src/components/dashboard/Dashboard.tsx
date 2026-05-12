@@ -35,7 +35,7 @@ function Dashboard({ values }: DashboardProps) {
       id: 4,
       image: "/dollar-sign.svg",
       color: "var(--default-blue)",
-      description: "Revenue Orders",
+      description: "Revenue",
       value: values.renevue,
     },
   ];

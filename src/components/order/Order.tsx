@@ -42,6 +42,12 @@ function Order({ orders }: OrderProps) {
   useEffect(() => {
     apllyFilter();
   }, [filterType, customer, orders]);
+
+  useEffect(() => {
+    let button = document.querySelector("button");
+    button!.id = "ALL-active";
+  }, []);
+
   return (
     <>
       <div className="container-order">
@@ -57,12 +63,13 @@ function Order({ orders }: OrderProps) {
             />
           </div>
           <div className="filters">
-            {Object.keys(FilterType).map((e) => (
+            {Object.values(FilterType).map((e) => (
               <button
-                key={e.valueOf()}
+                className={e == filterType ? `active` : ""}
+                key={e}
                 onClick={() => setFilterType(e as FilterType)}
               >
-                {e.valueOf()}
+                {e}
               </button>
             ))}
           </div>

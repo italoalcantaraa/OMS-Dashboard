@@ -23,6 +23,9 @@ function Home() {
 
   useEffect(() => {
     getAllOrders();
+  }, []);
+
+  useEffect(() => {
     setDashboarValues(calc(orders));
   }, [orders]);
 
