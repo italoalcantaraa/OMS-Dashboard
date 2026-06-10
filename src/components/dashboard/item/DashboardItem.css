@@ -10,6 +10,7 @@
   width: 100%;
   border-radius: 12px;
   border: var(--border);
+  transition: 0.2s;
 
   .icon {
     display: flex;
@@ -33,10 +34,15 @@
   #description {
     font-size: 14px;
     margin-bottom: 7px;
+    color: #899ab2;
   }
   #value {
-    font-family: 'inter-bold';
+    font-family: "nunito-sbold";
     font-weight: bold;
     font-size: 25px;
   }
+}
+
+.item:hover {
+  border: var(--hover-border);
 }

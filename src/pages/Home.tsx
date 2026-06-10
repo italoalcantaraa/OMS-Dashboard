@@ -1,11 +1,12 @@
 import "./Home.css";
 import Header from "../components/header/Header";
 import Dashboard from "../components/dashboard/Dashboard";
-import Order from "../components/order/Order.tsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { DashboardValues } from "../types/DashboardValues.ts";
 import { calc } from "../utils/DashboardCalc.ts";
+import OrderComponent from "../components/order/OrderComponent.tsx";
+import type { Order } from "../types/Order.ts";
 
 function Home() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -32,10 +33,8 @@ function Home() {
   return (
     <main>
       <Header />
-      <div className="content">
         <Dashboard values={dashBoardValues} />
-        <Order orders={orders} />
-      </div>
+        <OrderComponent orders={orders} />
     </main>
   );
 }

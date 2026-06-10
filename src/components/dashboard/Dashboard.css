@@ -1,7 +1,31 @@
 .items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 60%;
+  gap: 25px;
+}
+
+@media (max-width: 1175px) {
+  .items {
+    grid-template-columns: repeat(3, auto);
+    width: 70%;
+  }
+}
+
+@media (max-width: 899px) {
+  .items {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 799px) {
+  .items {
+    width: 80%;
+  }
+}
+
+@media (max-width: 525px) {
+  .items {
+    width: 90%;
+  }
 }

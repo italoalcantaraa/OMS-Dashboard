@@ -16,7 +16,10 @@ function ItemDashboard(props: DashboardItemProps) {
           <div id="little-ball" style={{ backgroundColor: `${props.color}` }} />
         </div>
         <p id="description">{props.description}</p>
-        <p id="value">{props.value}</p>
+        <p id="value">
+          {props.description == "Revenue" && "R$ "}
+          {props.value}
+        </p>
       </div>
     </>
   );

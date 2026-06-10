@@ -10,7 +10,12 @@ header {
 
   .title {
     h1 {
-      font-size: 20px;
+      font-size: 22px;
+      font-family: "nunito-sbold";
+    }
+    p {
+      font-family: "nunito-light";
+      font-size: 14px;
     }
   }
   .bell-profile {
@@ -48,14 +53,26 @@ header {
       border-left: 1px #314158 solid;
       padding-left: 20px;
 
+      p.role {
+        font-family: "nunito-light";
+        font-size: 13px;
+      }
       button {
+        height: 40px;
+        width: 40px;
         border-radius: 100%;
         border: none;
-        padding: 12px;
-        font-weight: bold;
         color: white;
-        background-color: #1947ce;
+        background-color: #0e71f1;
+        font-family: "nunito-sbold";
+        font-size: 16px;
       }
     }
+  }
+}
+
+@media (max-width: 485px) {
+  .profile > div {
+    display: none;
   }
 }
