@@ -17,8 +17,6 @@ function OrderComponent({ orders }: OrderProps) {
   const [filterType, setFilterType] = useState<FilterType>(FilterType.ALL);
   const [ordersCopy, setOrdersCopy] = useState<Order[]>([]);
   const [customer, setCustomer] = useState<string>("");
-  // const [colorTypeInterface, setColorTypeInterface] =
-  //   useState<ColorTypeInterface>();
 
   const apllyFilter = (): void => {
     let newList: Order[] = [];
